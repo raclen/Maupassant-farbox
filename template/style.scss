@@ -62,18 +62,14 @@ a:focus {
     position: relative;
     .site-name {
         margin-bottom: 40px;
-        h1 {
-            padding: 0;
-            margin: 0;
-            height: 0;
-            overflow: hidden;
-        }
+        height:88px;
         #logo {
-            font: bold 38px/1.12 "Times New Roman", Georgia, Times, sans-serif;
-            color: #555;
+            font-family: 'Roboto Slab',serif;
+            color: #fff;
+            text-decoration: none;
             span,
             &:hover {
-                color: #777;
+               color: #fff;
             }
         }
         .description {
@@ -121,7 +117,10 @@ a:focus {
             font-size: 16px;
             border-bottom: 1px solid #ddd;
             display: block;
-            font-weight: normal;
+            font-weight: bolder;
+        }
+        .widget-title:before{
+            font-weight: initial;
         }
         ul {
             list-style: none;
@@ -457,3 +456,129 @@ pre {
 .codehilite .cp,.codehilite .nt,.codehilite .na {
     color: inherit;
 }
+ .logo-bg {
+        width: 380px;
+        height: 220px;
+        position: absolute;
+        top: 0px;
+        left: -70px;
+    }
+
+    .logo {
+        width: 200px;
+        position: absolute;
+        left: 3em;
+        top: 3em;
+        z-index: 100;
+    }
+
+    .logo h2 {
+        font-size: 0.75em;
+        color: #fafafa;
+    }
+
+    .hidden{
+    display:none
+    }
+    .tags-left{
+        padding-top: 10px;
+        font-family: Consolas;
+        word-break: break-all;
+    }
+    .tags-left a{
+        display: inline-block;
+        margin: 0.3125em;
+        padding: 0.125em 0.5125em;
+        border: #dbdbdb solid 1px;
+    }
+
+    .tags-left a:hover{
+        background: #0ABAB5;
+        color:#fff;
+    }
+    #authorInfo {
+        overflow: hidden;
+        text-align: center;
+        padding-top: 2em;
+        margin-bottom: 1.5em;
+        border-bottom: 1px solid #ccc;
+        background-position: left bottom;
+        background-repeat: repeat-x;
+        -webkit-background-size: 5px auto;
+        -moz-background-size: 5px auto;
+        background-size: 5px auto;
+}
+
+
+.author-logo {
+    width: 148px;
+    height: 148px;
+    margin: 0 auto;
+    background: no-repeat url("img/raclen.jpg") left top;
+    -webkit-background-size: 6.875em 6.875em;
+    -moz-background-size: 6.875em 6.875em;
+    background-size: 148px 148px;
+    -webkit-border-radius: 3.4375em;
+    border-radius: 100px;
+    -webkit-transition: -webkit-transform 2s ease-out;
+    -moz-transition: -moz-transform 2s ease-out;
+    -o-transition: -o-transform 2s ease-out;
+    -ms-transition: -ms-transform 2s ease-out;
+    transition: transform 2s ease-out;
+}
+.author-logo:hover {
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  -o-transform: rotateZ(360deg);
+  -ms-transform: rotateZ(360deg);
+  transform: rotateZ(360deg);
+}
+@media only screen and (min-width: 1024px){
+        .social-list {
+        float: none;
+        width: auto;
+        padding: 0;
+        backgroun: #343434;
+    }
+}
+
+.social-list {
+    width: 100%;
+    margin: 50 auto;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+}
+.social-list a:before {
+    font-family: "FontAwesome";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.social-list a[title="weibo"]:before {
+    content: "\f18a";
+}
+.social-list a[title="github"]:before {
+    content: "\f09b";
+}
+.social-list a{
+    display: inline-block;
+    color: #343434;
+    font-size: 180%;
+    margin: 0.5em;
+}
+.social-list a:hover {
+    color: #0ABAB5;
+}
+#toTop{
+    position:fixed;
+    _position:absolute;
+    margin-left:500px; /*座标、距离酌情而定*/
+    left:50%;
+    bottom:30px;
+    display:none;
+    font-size: 18px;
+    border: #999 solid 1px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+

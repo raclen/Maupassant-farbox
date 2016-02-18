@@ -1,12 +1,12 @@
 extends base
 
 block title
-	title= post.title + " - " + site.title
+	title=  post.title + " - " + site.title
 
 block content
 	.post.post-page
 		h1.post-title= post.title
-		.post-meta= post.date.format('%B %d, %Y')
+		.post-meta 发表于{{post.date.format('%Y年%m月%d日')}}&nbsp;阅读{{post.visits}}次
 		.post-content= post.content
 		if post.tags
 			.tags
@@ -14,8 +14,8 @@ block content
 					a(href="/tag/{{tag}}")= tag
 
 		include include/comments.jade
-	script 
+	script
 		function addClass1(ele,cls) {
 		  ele.className = cls;
 		}
-		addClass1(document.getElementById("nav_blog"), "current"); 
+		addClass1(document.getElementById("nav_blog"), "current");
