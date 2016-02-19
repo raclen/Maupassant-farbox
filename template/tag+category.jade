@@ -1,0 +1,30 @@
+extends base
+block title
+	title= request.args.s or tags.join('+') or category.title or site.title
+block content
+	// i18n starts
+	+_('reading_label', 'currently reading articles under <b>%s</b>')
+	+_('reading_label', '正在查看 <b>%s</b> 下的文章', 'zh_cn')
+	// i18n ends
+	if request.path.strip('/') == 'category'
+		+redirect('/categories')
+	if request.path.strip('/') == 'tag'
+		+redirect('/tags')
+
+	if tags or category
+		h1.label-title=  _('reading_label') % (request.args.s or tags.join('+') or category.title)
+	if request.args.s
+		h1.label-title= _('search_label') % request.args.s
+
+
+    if category.title
+    	posts = get_data(type='post',path=category.title+'/',limit=20)
+    else
+		posts = get_data(type='post',tags=tags,limit=20)
+
+	ul.post.list
+		for post in posts
+			li
+				a(href=post.url)= post.title
+
+	include include/paginator
