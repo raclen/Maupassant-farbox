@@ -45,14 +45,16 @@ html
 					a(href='/album')= _('Albums')
 					if not has('posts')
 						+redirect('/album')
+                
 
 		#layout.pure-g
 			.pure-u-1.pure-u-md-3-4:.content_container
 				block content
 
+
 			.pure-u-1-4:#sidebar
 				.widget
-					form#search
+				    form#search
 						input#search_value.text(placeholder="Search",type="text",value=request.args.s, onkeyup="if (event.keyCode == 13) search();")
 
 				#authorInfo
@@ -80,7 +82,7 @@ html
 
 				.widget
 					.widget-title.fa.fa-sort-amount-desc= _('Recent')
-					newess_posts = get_data(path='/', type='post', limit=8, sort='desc', with_page=False)
+				    newess_posts = get_data(path='/', type='post', limit=8, sort='desc', with_page=False)
 					ul
 						for post in newess_posts
 							li
@@ -96,8 +98,6 @@ html
 			a(href='/', real="nofollow")= site.title
 			. Powered by
 			a(rel="nofollow", target="_blank", href="https://www.farbox.com") FarBox
-			. Theme by
-			a(rel="nofollow", target="_blank", href="http://chopstack.com") cho
 
 		script(src="/template/js/yunlogo.js")
 		script
