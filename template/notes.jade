@@ -1,0 +1,39 @@
+html
+	head
+		+mobile_meta()
+		meta(name="keywords", content=site.configs.keywords.escaped)
+		meta(name="description", content=site.raw_content.escaped)
+		block title
+			title= request.args.s or post.title or tags.join('+') or category.title or site.title
+		+get_resource("blog_basic.css")
+		+load('pure#0.5.0')
+		+load('/service/static_3rd/staticfile/ajax/libs/pure/0.5.0/grids-responsive-min.css')
+		+load('/template/style.scss')
+		+load("jquery")
+	body:.body_container
+        h1 随笔
+        
+        script
+            var text =[
+                'append字符串的时候，标签一定要成对出现，否则，ie8以下解析不了',
+                '代码里面一定不要留console，IE7/8/9都不认识它',
+                'IE7/8格式化日期new Date()参数必须还是标准格式"2016-02-18"是不对，应该是"2016/03/18"',
+                'vi常用命令，i进入编辑模式，ESC退出编辑模式，:x保存退出',
+                '发现gulp已经很好用了，加上了watch，然后sourcemap',
+                '微信ajax请求http==0，可以试试用post请求',
+                '动态生成的href="javascript:;" 安卓下，点击会出问题，可用href="javascript:void(0);"代替',
+                '浮动的行内元素也可以设置宽高（比如a标签）',
+                'reutn false只会终止本函数的执行',
+                'JavaScript有3种原始类型，布尔型，数值型，字符串，原始类型按值传递，其它按引用传递',
+                'label标签的for属性很好，可以指代另一个标签的ID 如：<label for="di"><p id="di"></p>,点击label就相当于点击了p标签',
+            ];
+            var $container = $('.body_container'); 
+            text.forEach(function(item,i){
+              $container.append('<pre>'+item.replace(/</g, '&lt;').replace(/>/g, '&gt;')+'</pre>')
+            })
+           
+            
+        
+        
+        
+        

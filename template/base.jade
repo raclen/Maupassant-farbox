@@ -8,6 +8,7 @@ html
 	+_('About', '关于', 'zh_cn')
 	+_('Recent', '最新文章', 'zh_cn')
 	+_('Tags', '标签', 'zh_cn')
+    +_('Notes', '随笔', 'zh_cn')
 	head
 		+mobile_meta()
 		meta(name="keywords", content=site.configs.keywords.escaped)
@@ -36,8 +37,7 @@ html
 
 			#nav-menu
 				+a_with_selected('/' or '/post', _('Blog'),'nav_blog')
-				if has('categories')
-					+a_with_selected('/categories', _('Categories'))
+				+a_with_selected('/notes', _('Notes'))
 				+a_with_selected('/archive', _('Archive'))
 				for p in get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
 					+a_with_selected('/'+p.path, _(p.filename.split('.')[0].title()))
