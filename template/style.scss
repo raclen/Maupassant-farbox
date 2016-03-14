@@ -1,6 +1,6 @@
 
 body {
-    background-color: #f5f5d5;
+    background-color: #fff;
     color: #444;
     font-family: arial;
     -webkit-font-smoothing: antialiased;
@@ -86,7 +86,7 @@ a:focus {
             border: 1px solid transparent;
             &.current {
                 border: 1px solid #ddd;
-                border-bottom-color: #f5f5d5;
+                border-bottom-color: #fff;
             }
         }
     }
@@ -498,7 +498,7 @@ pre {
 
     .tags-left a:hover{
         background: #DEEBF7;
-        border:none;
+        border-color: #DEEBF7;
     }
     .category-left {
             li{

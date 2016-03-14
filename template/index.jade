@@ -11,7 +11,7 @@ block content
     if request.args.s
 		h1.label-title= _('search_label') % request.args.s
         
-    posts = get_data(type='post', limit=6, pager_name='posts')
+        
 	for post in posts
 		.post
 			h2.post-title
@@ -25,7 +25,7 @@ block content
 	include include/paginator
 	script
         $('.post-content').each(function(){
-            var text =$(this).text().replace(/</g, '&lt;').replace(/>/g, '&gt;');;
+            var text =$(this).text().replace(/</g, '&lt;').replace(/>/g, '&gt;');
             $(this).html(text);
           })
       
