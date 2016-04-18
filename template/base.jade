@@ -35,16 +35,22 @@ html
   						a#logo(href='/',rel='nofollow')= site.title
 
 
-			#nav-menu
-				+a_with_selected('/' or '/post', _('Blog'),'nav_blog')
-				+a_with_selected('/notes', _('Notes'))
-				+a_with_selected('/archive', _('Archive'))
-				for p in get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
-					+a_with_selected('/'+p.path, _(p.filename.split('.')[0].title()))
-				if has('images')
-					a(href='/album')= _('Albums')
-					if not has('posts')
-						+redirect('/album')
+             #fold_box.P800
+                    #fold.T3D.fold_pager
+                        h2= "菜单导航"
+                        #fold_list.T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                            +a_with_selected('/' or '/post', _('Blog'),'nav_blog')
+                            .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                                +a_with_selected('/notes', _('Notes'))
+                                .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                                    +a_with_selected('/archive', _('Archive'))
+                                    .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                                        for p in get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
+                                            +a_with_selected('/'+p.path, _(p.filename.split('.')[0].title()))
+                                        if has('images')
+                                            a(href='/album')= _('Albums')
+                                                if not has('posts')
+                                                    +redirect('/album')
                 
 
 		#layout.pure-g
@@ -99,7 +105,8 @@ html
 			. Powered by
 			a(rel="nofollow", target="_blank", href="https://www.farbox.com") FarBox
 
-		script(src="/template/js/yunlogo.js")
+		script(src="/template/js/dist/yunlogo.js")
+        script(src="/template/js/dist/main.js")
 		script
 		    //文章搜索
 			function search() {

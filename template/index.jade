@@ -10,8 +10,7 @@ block content
     // i18n ends
     if request.args.s
 		h1.label-title= _('search_label') % request.args.s
-        
-        
+            
 	for post in posts
 		.post
 			h2.post-title
@@ -21,7 +20,7 @@ block content
 			if post.tags
 				.tags
 					for tag in post.tags
-						a(href="/tag/{{tag}}")= tag
+						a(href="/tag/{{tag}}")= tag                    
 	include include/paginator
 	script
         $('.post-content').each(function(){
