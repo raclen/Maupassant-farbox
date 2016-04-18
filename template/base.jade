@@ -54,7 +54,7 @@ html
                 
 
 		#layout.pure-g
-			.pure-u-1.pure-u-md-3-4:.content_container
+			.pure-u-1.pure-u-md-3-4:.content_container#contentleft
 				block content
 
 
@@ -98,7 +98,7 @@ html
 
 
 
-
+        div.pjax_loading
         a#toTop ↑
 		#footer= '© '
 			a(href='/', real="nofollow")= site.title
@@ -107,6 +107,7 @@ html
 
 		script(src="/template/js/dist/yunlogo.js")
         script(src="/template/js/dist/main.js")
+        script(src="/template/js/jquery.pjax.js")
 		script
 		    //文章搜索
 			function search() {
@@ -178,3 +179,16 @@ html
 			        }, 500);
 			        return false
 			    });
+                //pjax
+                $(document).pjax('a[target!=_blank]', '#contentleft', {fragment:'#contentleft', timeout:8000});
+                $(document).on('pjax:send', function() { //pjax链接点击后显示加载动画；
+                    $(".pjax_loading").animate({width:"200px"},500)
+                });
+                $(document).on('pjax:complete', function() { //pjax链接加载完成后隐藏加载动画；
+                    $(".pjax_loading").animate({width:"100%"},function(){
+                        $(".pjax_loading").css({width:"0"});
+                    });
+                    
+                  
+                });
+                

@@ -732,3 +732,11 @@ pre {
         font-size: 14px;
         box-shadow: 1px 1px 3px 2px #dfdfdf;
     }
+    .pjax_loading{
+        background-color: #f8afb8;
+        height: 3px;
+        position: fixed;
+        width: 0px;
+        top: 0;
+        left: 0;
+    }
