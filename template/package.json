@@ -1,0 +1,15 @@
+{
+  "name": "farbox",
+  "version": "1.0.0",
+   "dependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.1.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "raclen",
+  "license": "ISC"
+}

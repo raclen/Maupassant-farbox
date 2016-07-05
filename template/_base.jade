@@ -1,0 +1,121 @@
+html
+	// i18n
+	+_('Blog', '博客', 'zh_cn')
+	+_('Albums', '相册', 'zh_cn')
+	+_('Categories', '分类', 'zh_cn')
+	+_('Archive', '归档', 'zh_cn')
+	+_('Links', '链接', 'zh_cn')
+	+_('About', '关于', 'zh_cn')
+	+_('Recent', '最新文章', 'zh_cn')
+	+_('Tags', '标签', 'zh_cn')
+    +_('Notes', '随笔', 'zh_cn')
+	head
+		+mobile_meta()
+		meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+		meta(name="keywords", content=site.configs.keywords.escaped)
+		meta(name="description", content=site.raw_content.escaped)
+		block title
+			title= request.args.s or post.title or tags.join('+') or category.title or site.title
+		+get_resource("blog_basic.css")
+		+load("fonts")
+		+load('pure#0.5.0')
+		+load('/service/static_3rd/staticfile/ajax/libs/pure/0.5.0/grids-responsive-min.css')
+		+load('/template/style.scss')
+		+load("jquery")
+	body:.body_container
+		#header
+			.site-name
+				p.description.hidden= site.raw_content
+				div#logo-bg.logo-bg
+					canvas#yugen-logo-canvas.hidden
+					canvas#yugen-shadow-canvas.hidden
+  				div.logo
+  					h2 muxu.
+  					   span pw
+  					h1
+  						a#logo(href='/',rel='nofollow')= site.title
+
+
+             #fold_box.P800
+                    #fold.T3D.fold_pager
+                        h2.light= "菜单导航"
+                        #fold_list.T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                            +a_with_selected('/' or '/post', _('Blog'),'nav_blog')
+                            .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                                +a_with_selected('/notes', _('Notes'))
+                                .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                                    +a_with_selected('/archive', _('Archive'))
+                                    .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
+                                        for p in get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
+                                            +a_with_selected('/'+p.path, _(p.filename.split('.')[0].title()))
+                                        if has('images')
+                                            a(href='/album')= _('Albums')
+                                                if not has('posts')
+                                                    +redirect('/album')
+                
+
+		#layout.pure-g
+			.pure-u-1.pure-u-md-3-4:.content_container#contentleft
+				block content
+
+
+			.pure-u-1-4:#sidebar
+				.widget
+				    form#search
+						input#search_value.text(placeholder="Search",type="text",value=request.args.s, onkeyup="if (event.keyCode == 13) search();")
+
+				#authorInfo
+      				.author-logo
+      				.social-list
+        				a(href='http://weibo.com/t2275025', target='_blank', title='weibo')
+        				a(href='https://github.com/raclen', target='_blank', title='github')
+
+				.widget
+					ul.item
+						li.widget-title
+							a(href="javascript:;")=_('Categories')
+						li.widget-title
+							a(href="javascript:;")=_('Tags')
+						li.widget-title
+							a(href="javascript:;")=_('Links')
+					div.block
+						div
+							ul.category-left
+								for category in  get_data(type='folder', level=[1,2], min_posts_count=1)
+									li
+										a(href="/category/{{category.path}}", title=category.title)
+											= category.title
+											span= category._posts_count
+						div
+							div.tags-left
+								for tag in site.tags
+									a(href='/tag/'+tag[0], title=tag[0])
+										= tag[0]
+										sup= tag[1]
+						div
+							ul
+								li(style="padding-left:10px")
+									a(href="http://29793.blog.163.com/", title="我的网易博客",target="_blank")我的网易博客
+					                                
+          
+        div.pjax_loading
+        a#toTop ↑
+		#footer= '© '
+			a(href='/', real="nofollow")= site.title
+			. Powered by
+			a(rel="nofollow", target="_blank", href="https://www.farbox.com") FarBox
+            
+		script(src="/template/js/dist/app.min.js")
+		script
+			$('.widget-title a').eq(0).addClass('select');
+			$('.widget-title').on('click','a',function(e){
+				$('.widget-title a').removeClass('select');
+				$(e.target).addClass('select');
+				var _i = $('.widget-title a').index($(e.target));
+				$('.block>div').hide();
+				$('.block>div').eq(_i).show();
+				
+			})
+			
+		   
+                

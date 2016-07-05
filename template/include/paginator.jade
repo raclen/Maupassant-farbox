@@ -1,8 +1,14 @@
 +_('Previous', '上一页', 'zh_cn')
 +_('Next', '下一页', 'zh_cn')
-if paginator.has_pre or paginator.has_next
-	.page-navigator
-		if paginator.has_pre
-			a.pre(href=paginator.pre_url)= _('Previous')
-		if paginator.has_next
-			a.next(href=paginator.next_url)= _('Next')
+//- if paginator.has_pre or paginator.has_next
+//- 	.page-navigator
+//- 		if paginator.has_pre
+//- 			a.pre(href=paginator.pre_url)= _('Previous')
+//- 		if paginator.has_next
+//- 			a.next(href=paginator.next_url)= _('Next')
+.page-navigator
+        if paginator.has_pre
+            a.prev(href=paginator.previous_page_url)= _('Previous')
+       	if paginator.has_next 
+            a.next(href=paginator.next_page_url)= _('Next')
+

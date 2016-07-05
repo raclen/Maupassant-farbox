@@ -1,7 +1,7 @@
 
 
 //添加缓动扩展
-jQuery.extend(jQuery.easing,{
+;jQuery.extend(jQuery.easing,{
     easeOutBack: function (x, t, b, c, d, s) {
         if (s === undefined) s = 1.70158;
         return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;

@@ -5,6 +5,7 @@ block title
 
 block content
 	.post.post-page
+        //- a.fa.fa-exchange.toggle(href="javascript:;")
 		h1.post-title= post.title
 		.post-meta 发表于{{post.date.format('%Y年%m月%d日')}}&nbsp;阅读{{post.visits}}次
 		.post-content
@@ -13,6 +14,7 @@ block content
       				h4 目录
       				| {{ post.toc }}
       		| {{post.content}}
+            p.expire-tips
 
 		if post.tags
 			.tags
@@ -20,8 +22,12 @@ block content
 					a(href="/tag/{{tag}}")= tag
 
 		include include/comments.jade
+		
 	script
-		function addClass1(ele,cls) {
-		  ele.className = cls;
-		}
-		addClass1(document.getElementById("nav_blog"), "current");
+            var postDate = "{{post.date.format('%Y-%m-%d')}}";
+            var time = parseInt((new Date().getTime() - new Date(postDate).getTime())/1000/60/60/24);
+            if(time>180){
+                $('.expire-tips').text('提醒：本文发表于'+time+'天前，文中所描述的信息可能已发生改变，请谨慎使用。').show()
+            }
+         
+            

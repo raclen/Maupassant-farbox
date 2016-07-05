@@ -1,4 +1,5 @@
-html
+doctype html
+html(lang='zh-cn')
 	// i18n
 	+_('Blog', '博客', 'zh_cn')
 	+_('Albums', '相册', 'zh_cn')
@@ -11,6 +12,7 @@ html
     +_('Notes', '随笔', 'zh_cn')
 	head
 		+mobile_meta()
+		meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
 		meta(name="keywords", content=site.configs.keywords.escaped)
 		meta(name="description", content=site.raw_content.escaped)
 		block title
@@ -19,176 +21,76 @@ html
 		+load("fonts")
 		+load('pure#0.5.0')
 		+load('/service/static_3rd/staticfile/ajax/libs/pure/0.5.0/grids-responsive-min.css')
-		+load('/template/style.scss')
+		+load('/template/img/style_v2.css')
 		+load("jquery")
-	body:.body_container
-		#header
-			.site-name
-				p.description.hidden= site.raw_content
-				div#logo-bg.logo-bg
-					canvas#yugen-logo-canvas.hidden
-					canvas#yugen-shadow-canvas.hidden
-  				div.logo
-  					h2 muxu.
-  					   span pw
-  					h1
-  						a#logo(href='/',rel='nofollow')= site.title
-
-
-             #fold_box.P800
-                    #fold.T3D.fold_pager
-                        h2= "菜单导航"
-                        #fold_list.T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
-                            +a_with_selected('/' or '/post', _('Blog'),'nav_blog')
-                            .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
-                                +a_with_selected('/notes', _('Notes'))
-                                .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
-                                    +a_with_selected('/archive', _('Archive'))
-                                    .T3D.fold_pager(style='transform: rotateX(-180deg); -webkit-transform: rotateX(-180deg)')
-                                        for p in get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
-                                            +a_with_selected('/'+p.path, _(p.filename.split('.')[0].title()))
-                                        if has('images')
-                                            a(href='/album')= _('Albums')
-                                                if not has('posts')
-                                                    +redirect('/album')
-                
-
-		#layout.pure-g
-			.pure-u-1.pure-u-md-3-4:.content_container#contentleft
-				block content
-
-
-			.pure-u-1-4:#sidebar
-				.widget
-				    form#search
-						input#search_value.text(placeholder="Search",type="text",value=request.args.s, onkeyup="if (event.keyCode == 13) search();")
-
-				#authorInfo
-      				.author-logo
-      				.social-list
-        				a(href='http://weibo.com/t2275025', target='_blank', title='weibo')
-        				a(href='https://github.com/raclen', target='_blank', title='github')
-
-				.widget
-					.widget-title.fa.fa-list-alt= _('Categories')
-					ul.category-left
-						for category in  get_data(type='folder', level=[1,2], min_posts_count=1)
-						    li
-								a(href="/category/{{category.path}}", title=category.title)
-									= category.title
-									span= category._posts_count
-
-				.widget
-					.widget-title.fa.fa-tags= _('Tags')
-					div.tags-left
-						for tag in site.tags
-							 a(href='/tag/'+tag[0], title=tag[0])
-							    = tag[0]
-							 	sup= tag[1]
-
-				.widget
-					.widget-title.fa.fa-sort-amount-desc= _('Recent')
-				    newess_posts = get_data(path='/', type='post', limit=8, sort='desc', with_page=False)
-					ul
-						for post in newess_posts
-							li
-								a(href=post.url, title=post.title)= post.title
-
-
-
-
-
-        div.pjax_loading
-        a#toTop ↑
-		#footer= '© '
-			a(href='/', real="nofollow")= site.title
-			. Powered by
-			a(rel="nofollow", target="_blank", href="https://www.farbox.com") FarBox
-
-		script(src="/template/js/dist/yunlogo.js")
-        script(src="/template/js/dist/main.js")
-        script(src="/template/js/jquery.pjax.js")
-		script
-		    //文章搜索
-			function search() {
-				if (document.getElementById('search_value').value) {
-				  location.href = 'http://' + location.host + '?s=' + document.getElementById('search_value').value;
-				}
-				return false;
-			 }
-			 //yunlogo
-			 YugenLogo.initialize({
-			        framerate: 60,
-
-			        width: 380,
-			        height: 220,
-
-			        colorSpeedFactor: 0.4,
-			        morphSpeedFactor: 0.4,
-			        introSpeedFactor: 2,
-			        outroSpeedFactor: 2,
-
-			        morphStrengthFactor: 0.8,
-
-			        morphBaseSpeedFactor: 0.2,
-			        normalOffsetFactor: 1.5,
-
-			        maxShapeRotation: 0.2,
-
-			        wordOffsetX: 0,
-			        wordOffsetY: 0,
-
-			        wordScale: 1,
-
-			        foregroundScaleX: 0.42,
-			        foregroundScaleY: 0.21,
-			        backgroundScaleX: 0.36,
-			        backgroundScaleY: 0.21,
-
-			        shadowAlpha: 0.1,
-
-			        shapeQuality: 9,
-
-			        containerID: "logo-bg",
-			        logoCanvasID: "yugen-logo-canvas",
-
-			        colors: [
-			            [new YugenLogo.util.Color(240, 240, 240), new YugenLogo.util.Color(0, 0, 0)],
-			            [new YugenLogo.util.Color(0, 0, 0), new YugenLogo.util.Color(240, 240, 240)]
-			        ],
-
-			        inputs: [
-			            YugenLogo.input.move,
-			            YugenLogo.input.press
-			        ],
-
-			        fallbackImages: []
-			    });
-			    //返回顶部
-			    var toTop = $("#toTop");
-			    $(window).scroll(function() {
-			        if ($(window).scrollTop() < 500) {
-			            toTop.fadeOut("fast");
-			        } else {
-			            toTop.fadeIn("fast");
-			        }
-			    });
-			    toTop.click(function() {
-			        $("html,body").animate({
-			            scrollTop: 0
-			        }, 500);
-			        return false
-			    });
-                //pjax
-                $(document).pjax('a[target!=_blank]', '#contentleft', {fragment:'#contentleft', timeout:8000});
-                $(document).on('pjax:send', function() { //pjax链接点击后显示加载动画；
-                    $(".pjax_loading").animate({width:"200px"},500)
-                });
-                $(document).on('pjax:complete', function() { //pjax链接加载完成后隐藏加载动画；
-                    $(".pjax_loading").animate({width:"100%"},function(){
-                        $(".pjax_loading").css({width:"0"});
-                    });
-                    
+		//if lt IE 9
+		script(src='http://www.csszengarden.com/script/html5shiv.js')
+		//
+    //借鉴于禅意花园，顺便吐槽一下，代码真乱
+    //http://www.csszengarden.com/tr/zh-cn/
+  body#css-zen-garden
+    .page-wrapper
+      section#zen-intro.intro
+        header(role='banner')
+          h1.site=site.title
+          h2.site
+            abbr(title=site.raw_content.escaped) 
+            site.raw_content.escaped
+      .g-nav-user.f-usn.g-hd
+        .g-in
+          .m-nav-user.f-cb
+            .g-nav
+              .m-nav
+                ul.f-cb
+                  li.link
+                    +a_with_selected('/', _('Blog'))
+                  li.link
+                    +a_with_selected('/notes', _('Notes'))
+                  li.link
+                    +a_with_selected('/archive', _('Archive'))
+                  li.link
+                     a(href='/album')= _('Albums')
+            .g-user
+              .m-user
+                ul.f-cb
+                  li.search.z-hover
+                    span.search-keyword
+                      form#search
+                        input#search_value.text(placeholder="Search",type="text",value=request.args.s, onkeyup="if (event.keyCode == 13) search();")
+        #contentleft.preamble(role='article')
+          	block content
+			   
+        
+      aside.sidebar(role='complementary')
+        .wrapper
+        
+          #design-selection.design-selection
+            h3.select 选择一项设计
+            nav(role='navigation')
+              ul
+                for category in  get_data(type='folder', level=[1,2], min_posts_count=1)
+                  li
+                    a(href="/category/{{category.path}}", title=category.title)
+                      = category.title
+              
                   
-                });
-                
+          #design-archives.design-archives
+          #zen-resources.zen-resources
+            h3.resources 链接：
+            ul
+								li(style="padding-left:10px")
+									a(href="http://29793.blog.163.com/", title="我的网易博客",target="_blank")我的网易博客
+
+
+	div.pjax_loading
+	script(src="/template/js/jquery.pjax.js")			  
+	script(src="/template/js/app.1.js")
+
+  //- footer
+        //-   a.zen-validate-html(href='http://validator.w3.org/check/referer', title='检查本站的HTML有效性') HTML
+        //-   a.zen-validate-css(href='http://jigsaw.w3.org/css-validator/check/referer', title='检查本站的CSS有效性') CSS
+        //-   a.zen-license(href='http://creativecommons.org/licenses/by-nc-sa/3.0/', title='查看本站的知识共享许可：署名-非商用-相同方式共享') CC
+        //-   a.zen-accessibility(href='http://mezzoblue.com/zengarden/faq/#aaa', title='阅读本站可访问性说明') A11y
+        //-   a.zen-github(href='https://github.com/mezzoblue/csszengarden.com', title='在 Github 上 Fork 本站') GH
+
+  
