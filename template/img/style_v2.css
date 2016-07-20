@@ -912,7 +912,6 @@ code, kbd, pre, samp {
     color: inherit;
 }
 
-.codehilite .c1,
 .codehilite .n {
     color: #2e2b40;
 }
@@ -954,7 +953,7 @@ blockquote,
     font-size: 14px;
     line-height: 1.5;
     font-family: "微软雅黑";
-    font-style: oblique;
+    /*font-style: oblique;*/
 }
 .expire-tips {
     background-color: #ffffc0;
@@ -966,7 +965,7 @@ blockquote,
     display: none;
 }
 /*menu*/
- .g-nav-user {
+.g-nav-user {
     width: 100%;
     height: 48px;
     background: #69c72b;
