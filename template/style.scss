@@ -428,8 +428,9 @@ pre {
     color: inherit;
 }
 
-.codehilite .c1 {
-    color: darkgray;
+.codehilite .c1,
+.codehilite .n {
+    color: #2e2b40;
 }
 
 .codehilite .o {
@@ -778,23 +779,23 @@ pre {
 
 
 
-.light:before {
-    content: "";
-    position: absolute;
-    left: -665px;
-    top: -460px;
-    width: 200px;
-    height: 15px;
-    background-color: rgba(255,255,255,.5);
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    -webkit-animation: searchLights 1s ease-in 1s infinite;
-    -o-animation: searchLights 1s ease-in 1s infinite;
-    animation: searchLights 1s ease-in 1s infinite;
-}
+// .light:before {
+//     content: "";
+//     position: absolute;
+//     left: -665px;
+//     top: -460px;
+//     width: 200px;
+//     height: 15px;
+//     background-color: rgba(255,255,255,.5);
+//     -webkit-transform: rotate(-45deg);
+//     -moz-transform: rotate(-45deg);
+//     -ms-transform: rotate(-45deg);
+//     -o-transform: rotate(-45deg);
+//     transform: rotate(-45deg);
+//     -webkit-animation: searchLights 1s ease-in 1s infinite;
+//     -o-animation: searchLights 1s ease-in 1s infinite;
+//     animation: searchLights 1s ease-in 1s infinite;
+// }
 
 .pace-activity {
     display: block;
@@ -847,9 +848,9 @@ pre {
 .cade{
     color: cadetblue;
 }
-.border-1{
-    border: 1px solid #ededed;
-    .widget-title{
-        padding-left: 10px;
-    }
+table tbody > tr:nth-child(even) > td, table tbody > tr:nth-child(odd) > th {
+    background-color: #f3f1e5;
+}
+code, kbd, pre, samp {
+    font-family: Consolas;
 }
