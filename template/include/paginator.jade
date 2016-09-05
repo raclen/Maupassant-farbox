@@ -6,9 +6,11 @@
 //- 			a.pre(href=paginator.pre_url)= _('Previous')
 //- 		if paginator.has_next
 //- 			a.next(href=paginator.next_url)= _('Next')
+p.test
+    paginator.previous_page
+    paginator.next_page
 .page-navigator
-        if paginator.has_pre
-            a.prev(href=paginator.previous_page_url)= _('Previous')
-       	if paginator.has_next 
+        if paginator.previous_page
+            a.pre(href=paginator.previous_page_url)= _('Previous')
+       	if paginator.next_page 
             a.next(href=paginator.next_page_url)= _('Next')
-

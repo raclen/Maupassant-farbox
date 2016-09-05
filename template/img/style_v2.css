@@ -74,9 +74,6 @@ a {
   transition: all 0.25s ease-out;
   text-decoration: none;
 }
-  a:visited {
-    color: #1a5952;
-  }
   a:hover, a:focus {
     color: #0599c2;
     text-decoration: underline;
@@ -116,7 +113,7 @@ h1.site {
   font-size: 3.2em;
   text-transform: uppercase;
 }
-h1.site:before {
+/*h1.site:before {
   display: inline-block;
   position: relative;
   top: 20px;
@@ -128,6 +125,18 @@ h1.site:before {
   background-repeat: no-repeat;
   background-size: 100%;
   opacity: 0.6;
+}*/
+#canvas{
+    display: inline-block;
+    position: relative;
+    top: 65px;
+    margin: -65px 40px 0 0;
+}
+#hitcanvas{
+  top: 0;
+  left: 0;
+  z-index: 2;
+  position: fixed;
 }
 h2.site {
   display: block;
@@ -605,22 +614,7 @@ footer a::before {
     margin: 15px 0 0 0;
     padding: 60px 0 5px 0;
   }
-  h1.site:before {
-    display: inline-block;
-    position: relative;
-    top: 65px;
-    content: "";
-    width: 125px;
-    height: 125px;
-    margin: -65px 40px 0 0;
-    background: url(enso.svg);
-    background-size: 100%;
-    opacity: 0.6;
 
-    -webkit-animation: koan 36000s infinite alternate;
-    -moz-animation: koan 36000s infinite alternate;
-    animation: koan 36000s infinite alternate;
-  }
   h2.site {
     display: block;
     margin: 0;
